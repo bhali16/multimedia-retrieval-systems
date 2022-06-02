@@ -1,0 +1,110 @@
+{% extends "_base.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .search-card {
+        background-color: #006773;
+      }
+
+      .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+      }
+
+      .simlarity-badage {
+        color: #fff;
+        background-color: #006773;
+        border-color: #006773;
+        padding: 2px 5px 4px 5px;
+        border-radius: 5px;
+        font-size: small;
+        font-weight: 700;
+      }
+      audio:hover,
+      audio:focus,
+      audio:active {
+        -webkit-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+
+      audio {
+        -webkit-transition: all 0.5s linear;
+        -moz-transition: all 0.5s linear;
+        -o-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+        -moz-box-shadow: 2px 2px 4px 0px #006773;
+        -webkit-box-shadow: 2px 2px 4px 0px #006773;
+        box-shadow: 2px 2px 4px 0px #006773;
+        -moz-border-radius: 7px 7px 7px 7px;
+        -webkit-border-radius: 7px 7px 7px 7px;
+        border-radius: 7px 7px 7px 7px;
+      }
+    </style>
+  </head>
+  <body class="d-flex h-100 text-center text-dark bg-light">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h1>Search Results</h1>
+          <h4>Audio by Audio</h4>
+          <i>Waqar Ahmad Khan</i>
+        </div>
+        <div>
+          <br>
+          <div class="card search-card">
+            <div class="card-body">
+              <audio controls>
+                <source src="..\static\audio_files\{{query_audio}}" type="audio/mpeg"/>
+              </audio>
+            </div>
+          </div>
+
+        </div>
+      </header>
+      <main class="px-3">
+        <div class="container">
+          <div class="parent">
+            {% for item in audio_results %}
+            <div>
+              <img src="..\static\audio_previews\{{item.audio}}.jpg">
+              <audio controls>
+                <source src="..\static\audio_files\{{item.audio}}.wav" type="audio/mpeg" />
+              </audio>
+              <br />
+              <span class="simlarity-badage">Distance: {{item.score}}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </main>
+      <footer class="mt-auto text-white-50">
+        <p>Waqar Ahmad Khan</p>
+      </footer>
+    </div>
+  </body>
+</html>
+{% endblock %}

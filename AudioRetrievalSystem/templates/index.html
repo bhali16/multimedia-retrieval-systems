@@ -1,0 +1,94 @@
+{% extends "_base.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    <!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Search by Audio</h3>
+    </div>
+  </header>
+
+  <main class="px-3">
+    <form action="/search" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <div class="custom-file">
+          <input type="file" name="audio">
+          <button type="submit" class="browse btn btn-success">Search Audio</button>
+       </div>
+      </div>
+    </form>
+  </main>
+
+  <footer class="mt-auto text-white-50">
+    <p>Waqar Ahmad Khan</p>
+  </footer>
+</div> -->
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="mb-auto">
+      <div>
+        <h1>Search Audio by Audio</h1>
+        <h4>Upload audio to find similar audio file based on similarity measures.</h4>
+      </div>
+    </header>
+    <main class="px-3">
+    <div class="container">
+      <form action="/search" method="POST" enctype="multipart/form-data">
+        <div class="form-group" x-data="{ fileName: '' }">
+          <div class="input-group shadow">
+            <span class="input-group-text px-3 text-muted"
+              ><i class="fas fa-music fa-lg"></i
+            ></span>
+            <input
+              type="file"
+              x-ref="file"
+              @change="fileName = $refs.file.files[0].name"
+              name="audio"
+              class="d-none"
+            />
+            <button
+              class="browse btn btn-primary px-4"
+              type="button"
+              x-on:click.prevent="$refs.file.click()"
+            >
+              Browse
+            </button>
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Select Audio File"
+              x-model="fileName"
+            />
+            
+            <button type="submit" class="browse btn btn-success"><i class="fas fa-search"></i> Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+    <footer class="mt-auto text-white-50">
+      <p>Waqar Ahmad Khan</p>
+    </footer>
+  </div>
+  </body>
+</html>
+{% endblock %}
